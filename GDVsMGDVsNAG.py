@@ -35,9 +35,9 @@ def nag_gd(initial_w, lr=0.1, beta=0.9, iterations=50):
     u = 0
     w_history = [w]
     for _ in range(iterations):
-        lookahead = w - lr * beta * u
+        lookahead = w - beta * u
         grad = grad_f(lookahead)
-        u = beta * u + grad
+        u = beta * u + lr*grad
         w = w - lr * u
         w_history.append(w)
     return w_history
