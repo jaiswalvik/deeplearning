@@ -3,12 +3,12 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 # Dataset
-X = [-1, 0.5]
-Y = [0.5, 0.03]
+X = [-1, 0.2]
+Y = [0.5, 0.97]
 
 # Sigmoid function
 def f(x, w, b):
-    return 1 / (1 + np.exp(-(w * x - b)))
+    return 1 / (1 + np.exp(-(w * x + b)))
 
 # Error function
 def error(w, b):
@@ -31,7 +31,7 @@ err_history = []
 def do_gradient_descent():
     w, b = 2, 2
     eta = 1.0
-    max_epochs = 42
+    max_epochs = 100
     for _ in range(max_epochs):
         dw, db = 0, 0
         for x, y in zip(X, Y):
@@ -41,6 +41,7 @@ def do_gradient_descent():
         b -= eta * db
         w_history.append(w)
         b_history.append(b)
+        print(f"w={w:.4f}, b={b:.4f}, error={error(w, b):.4f}")
         err_history.append(error(w, b))
 
 do_gradient_descent()
